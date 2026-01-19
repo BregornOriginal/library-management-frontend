@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Books from './pages/Books';
+import Dashboard from './pages/Dashboard';
 import './App.css';
 
 // Navbar Component
@@ -27,10 +28,16 @@ const Navbar = () => {
         <Link to="/">Home</Link>
         <Link to="/books">Books</Link>
 
+        {isAuthenticated && (
+          <Link to="/dashboard">
+            Dashboard {user?.role === 'librarian' ? '🧙‍♂️' : '🏹'}
+          </Link>
+        )}
+
         {isAuthenticated ? (
           <>
             <span className="user-info">
-              👋 {user?.name} {user?.role === 'librarian' ? '🧙‍♂️' : '🏹'}
+              👋 {user?.name}
             </span>
             <button onClick={handleLogout} className="btn-logout">
               Logout
@@ -62,6 +69,14 @@ function AppContent() {
             element={
               <PrivateRoute>
                 <Books />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <Dashboard />
               </PrivateRoute>
             }
           />
