@@ -95,7 +95,7 @@ const MemberDashboard = ({ data, onRefresh }) => {
                   className={`borrowed-book-card ${overdueStatus ? 'overdue' : ''}`}
                 >
                   <div className="book-card-header">
-                    <h3>{borrowing.book_title}</h3>
+                    <h3>{borrowing.book.title}</h3>
                     {overdueStatus && (
                       <span className="overdue-tag">⚠️ OVERDUE</span>
                     )}
@@ -103,7 +103,7 @@ const MemberDashboard = ({ data, onRefresh }) => {
 
                   <div className="book-card-body">
                     <p className="book-info">
-                      <strong>Author:</strong> {borrowing.book_author}
+                      <strong>Author:</strong> {borrowing.book.author}
                     </p>
                     <p className="book-info">
                       <strong>Borrowed:</strong> {new Date(borrowing.borrowed_at).toLocaleDateString()}
